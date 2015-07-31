@@ -3,7 +3,7 @@ rec {
     nixGit = stdenv.lib.overrideDerivation nix (attrs : rec {
       src = ./.;
       #buildInputs = nix.buildInputs ++ [ bison flex bzip2 ];
-      buildInputs = [ curl openssl sqlite libsodium bison flex bzip2 ];
+      buildInputs = [ curl openssl sqlite libsodium bison flex bzip2 autoconf automake ];
       # ${nix.configureFlags}
       preConfigure = ''
         ./bootstrap.sh
@@ -34,8 +34,8 @@ rec {
       #  LDFLAGS="${stdenv.lib.concatStringsSep " " (map (p: "-L${p}/lib") buildInputs)}"
       #];
       #configureFlags = "";
-      doInstallCheck = "";
-      doCheck = "";
+      #doInstallCheck = "";
+      #doCheck = "";
     });
     nixGitEnv = stdenv.mkDerivation rec {
       name = "nix-git-env";
