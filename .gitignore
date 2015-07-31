@@ -123,3 +123,7 @@ GPATH
 GRTAGS
 GSYMS
 GTAGS
+
+# logs
+
+*.log

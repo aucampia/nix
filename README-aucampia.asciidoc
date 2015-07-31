@@ -1,0 +1,28 @@
+= ...
+
+----
+nix-shell nixGitEnv.nix -A nixGit
+#export out=/tmp/nix-out-nix/
+export NIX_BUILD_CORES=9
+configurePhase | tee configurePhase.log
+buildPhase | tee buildPhase.log
+installPhase | tee installPhase.log
+
+----
+
+
+----
+export nixa=nixGit
+rm -r /tmp/nix-shell-${nixa}
+nix-shell nixGitEnv.nix -A ${nixa}
+export out=/tmp/nix-shell-${nixa}
+export prefix=${out}
+declare -p nixa out prefix
+export NIX_BUILD_CORES=9
+
+configurePhase | tee configurePhase.log
+buildPhase | tee buildPhase.log
+installPhase | tee installPhase.log
+
+genericBuild | tee genericBuild.log
+----
